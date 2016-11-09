@@ -13,26 +13,74 @@ var bio = {
 	"skills" : [
 		"Java", "C", "Ruby on Rails", "MongoDB"
 	],
-	"bioPic" : "images/my_profile.jpg"
-	"display" : display();
+	"bioPic" : "images/my_profile.jpg",
+	"display" : function() {
+		/*Display bio*/
+		var name="JaeMin Baek"
+		//name = inName(name);
+		var formattedName = HTMLheaderName.replace("%data%", name);
+
+		var role="Front End Developer"
+		var formattedRole = HTMLheaderRole.replace("%data%", role);
+		$("#header").prepend(formattedRole);
+		$("#header").prepend(formattedName);
+		//append img
+		var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", "Hello, I'm Front End ninja");
+		$("#header").append(formattedWelcomeMsg);
+
+		var formattedImg = HTMLbioPic.replace("%data%",bio.bioPic);
+		$("#header").append(formattedImg);
+
+		/*display skills*/
+		if(bio.skills.length >0) {
+		//append skill start
+		$("#header").append(HTMLskillsStart);
+
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+		$("#skills").append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+		$("#skills").append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+		$("#skills").append(formattedSkill);
+
+		formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+		$("#skills").append(formattedSkill);
+		}
+	}
 }
+bio.display();
 
 //my education
 var education = {
 	"schools" : [
 		{
 			"name" : "Georgia Tech",
-			"city" : "Atlanta, GA, USA",
-			"degree" : "BS",
-			"major" : ["Computer Science"]
+			"location" : "Atlanta, GA, USA",
+			"degree" : "Bachelor of Science",
+			"major" : ["Computer Science"],
+			"dates" : "Dec 2013 - Nov 2014",
+			"url" : "www.gatech.edu/"
 		},
 		{
 			"name" : "Highline College",
-			"city" : "Des Moines, WA, USA",
-			"degree" : "AS",
-			"major" : ["Computer Science"]
+			"location" : "Des Moines, WA, USA",
+			"degree" : "Associate of Science - Honors Scholar",
+			"major" : ["Computer Science"],
+			"dates" : "Sep 2011 - Jun 2013",
+			"url" : "www.highline.edu"
 		}
-	]
+	],
+	"onlineCourses" : [ 
+		{
+			"title" : "Front End Nanodegree",
+			"school" : "Udacity",
+			"dates" : "2016/10/08 - in progress",
+			"description" : "boost web programming skill in the subjects of Responsive, Version Control, HTML/CSS, bootstrap, Ajax, jQuery, Javascript, and so on"
+		}	
+	],
+	"display" : 0
 }
 
 //my work
@@ -40,9 +88,10 @@ var work = {
 	"jobs": [
 	{
 		"employer" : "Republic of Korea Army",
-		"title" : "Enlisted Man",
-		"period" : "2015/02/09 - 2015/11/08",
-		"description" : "Discharged with no issue"
+		"title" : "Enlisted Man, Arcraft Assitant Instructor",
+		"location" : "Army Aviation School, Nonsan, South Korea",
+		"period" : "2015/02/09 - 2016/11/08",
+		"description" : "Employed Helicopters such as 500MD, UH-1H, AH-1S, UH-60, BO-105, CH-47 to rear warrant officers and military officers"
 	},
 	{
 		"employer" : "Highline College",
@@ -50,69 +99,29 @@ var work = {
 		"period" : "2013/01/09 - 2013/06/15",
 		"description" : "taught Multicalculus level Mathematics" 
 	}
-	]
+	],
+	"display" : 0
 }
 
 //my project
 var projects = {
 	"projects" : [{
 		"title" : "Book Swap",
-		"images" : [],
 		"dates" : "2014/01/01",
-		"description": "Book Swap Webpage for Georgia Tech Student"
+		"description": "Book Swap Webpage for Georgia Tech Student",
+		"images" : ["images/noimage.img"]
 	},	
 	{	
-		"title" : "CS4400H",
-		"images" : [],
+		"title" : "Yeap",
 		"dates" : "2013/01/01",
-		"description": "Data Mining project with MongoDB"
-	}]	
+		"description": "Data Mining project with MongoDB",
+		"images" : ["images/noimage.img"]
+	}],
+	"display" : 0
 }		
 
 
-/*function takes no parameter*/
-function display(){
 
-}
-
-//append name
-var name="JaeMin Baek"
-//name = inName(name);
-var formattedName = HTMLheaderName.replace("%data%", name);
-
-var role="Front End Developer"
-var formattedRole = HTMLheaderRole.replace("%data%", role);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-//append img
-var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", "Hello, I'm Front End ninja");
-$("#header").append(formattedWelcomeMsg);
-
-var formattedImg = HTMLbioPic.replace("%data%",bio.bioPic);
-$("#header").append(formattedImg);
-
-
- //append mobile, email, github, twitter location
-
-
-if(bio.skills.length >0) {
-	//append skill start
-	$("#header").append(HTMLskillsStart);
-
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
-
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	$("#skills").append(formattedSkill);
-
-
-}
 //Contact Information
 var mob = "010-5309-2224";
 var contact = HTMLmobile.replace("%data%", mob);
