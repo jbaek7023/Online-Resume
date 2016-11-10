@@ -88,7 +88,7 @@ var education = {
     "onlineCourses": [{
         "title": "Front End Nanodegree",
         "school": "Udacity",
-        "dates": "2016/10/08 - in progress",
+        "dates": "Oct 2016 - in progress",
         "description": "boost web programming skill in the subjects of Responsive, Version Control, HTML/CSS, bootstrap, Ajax, jQuery, Javascript, and so on"
     }],
     "display": function() {
@@ -194,21 +194,19 @@ var projects = {
             var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
             $(".project-entry:last").append(formattedDescription);
 
+
             //putting img
             if (project.images.length > 0) {
+            	$(".project-entry:last").append(HTMLprojectImageCollection);
                 project.images.forEach(function(image) {
                     var formattedImage = HTMLprojectImage.replace("%data%", image);
-                    $(".project-entry:last").append(formattedImage);
+                    $(".image-collection:last").append(formattedImage);
                 });
             }
         });
     }
 }
 projects.display();
-
-/*Google Map doesn't work... :(*/
-$("#mapDiv").append(googleMap);
-$("#map").initializeMap();
 
 /*internationalizeButton*/
 function inName(name) {
@@ -220,12 +218,6 @@ function inName(name) {
 }
 $("#main").append(internationalizeButton);
 
-
-
-
-
-
-
-
-
-
+/*Google Map doesn't work... :(*/
+$("#mapDiv").append(googleMap);
+$("#map").initializeMap();
