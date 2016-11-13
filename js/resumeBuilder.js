@@ -65,7 +65,7 @@ var bio = {
         var blog = HTMLlocation.replace("%data%", bio.contacts.location);
         $("#topContacts").append(blog);
     }
-}
+};
 bio.display();
 
 //my education
@@ -127,7 +127,7 @@ var education = {
             $(".education-entry:last").append(formattedLocation);
         });
     }
-}
+};
 education.display();
 
 //my work
@@ -165,7 +165,7 @@ var work = {
             $(".work-entry:last").append(formattedDescription);
         });
     }
-}
+};
 work.display();
 
 //my project
@@ -197,7 +197,7 @@ var projects = {
 
             //putting img
             if (project.images.length > 0) {
-            	$(".project-entry:last").append(HTMLprojectImageCollection);
+                $(".project-entry:last").append(HTMLprojectImageCollection);
                 project.images.forEach(function(image) {
                     var formattedImage = HTMLprojectImage.replace("%data%", image);
                     $(".image-collection:last").append(formattedImage);
@@ -205,7 +205,7 @@ var projects = {
             }
         });
     }
-}
+};
 projects.display();
 
 /*internationalizeButton*/
