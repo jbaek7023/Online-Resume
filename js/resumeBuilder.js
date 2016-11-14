@@ -13,10 +13,9 @@ var bio = {
     "skills": [
         "Java", "C", "Ruby on Rails", "MongoDB"
     ],
-    "bioPic": "images/my_profile.jpg",
+    "biopic": "images/my_profile.jpg",
     "display": function() {
         /*Display bio*/
-        //name = inName(name);
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
 
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
@@ -27,46 +26,36 @@ var bio = {
         var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
         $("#header").append(formattedWelcomeMsg);
 
-        var formattedImg = HTMLbioPic.replace("%data%", bio.bioPic);
+        var formattedImg = HTMLbioPic.replace("%data%", bio.biopic);
         $("#header").append(formattedImg);
 
         /*display skills*/
         if (bio.skills.length > 0) {
-            //append skill start
             $("#header").append(HTMLskillsStart);
-
-            var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-            $("#skills").append(formattedSkill);
-
-            formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-            $("#skills").append(formattedSkill);
-
-            formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-            $("#skills").append(formattedSkill);
-
-            formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-            $("#skills").append(formattedSkill);
+            for(var i=0; i<bio.skills.length; i++){
+                var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+                $("#skills").append(formattedSkill);
+            }    
         }
 
         /*Add contact information*/
         //Contact Information
         var contact = HTMLmobile.replace("%data%", bio.contacts.mobile);
-        $("#topContacts").append(contact);
+        $("#topContacts, #footerContacts").append(contact);
 
         var email = HTMLemail.replace("%data%", bio.contacts.email);
-        $("#topContacts").append(email);
+        $("#topContacts, #footerContacts").append(email);
 
         var twitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-        $("#topContacts").append(twitter);
+        $("#topContacts, #footerContacts").append(twitter);
 
         var github = HTMLgithub.replace("%data%", bio.contacts.github);
-        $("#topContacts").append(github);
+        $("#topContacts, #footerContacts").append(github);
 
         var blog = HTMLlocation.replace("%data%", bio.contacts.location);
-        $("#topContacts").append(blog);
+        $("#topContacts, #footerContacts").append(blog);
     }
 };
-bio.display();
 
 //my education
 var education = {
@@ -74,14 +63,14 @@ var education = {
         "name": "Georgia Tech",
         "location": "Atlanta, GA, USA",
         "degree": "Bachelor of Science",
-        "major": ["Computer Science"],
+        "majors": ["Computer Science"],
         "dates": "Dec 2013 - Nov 2014",
         "url": "https://www.gatech.edu/"
     }, {
         "name": "Highline College",
         "location": "Des Moines, WA, USA",
         "degree": "Associate of Science",
-        "major": ["Computer Science"],
+        "majors": ["Computer Science"],
         "dates": "Sep 2011 - Jun 2013",
         "url": "https://www.highline.edu"
     }],
@@ -108,10 +97,12 @@ var education = {
             var formattedLocation = HTMLschoolLocation.replace("%data%", school.location);
             $(".education-entry:last").append(formattedLocation);
 
-            var formattedMajor = HTMLschoolMajor.replace("%data%", school.major);
+            var formattedMajor = HTMLschoolMajor.replace("%data%", school.majors);
             $(".education-entry:last").append(formattedMajor);
         });
 
+        //append online classes
+        $("#education").append(HTMLonlineClasses);
         education.onlineCourses.forEach(function(course) {
             $("#education").append(HTMLschoolStart);
             //online classes
@@ -128,7 +119,6 @@ var education = {
         });
     }
 };
-education.display();
 
 //my work
 var work = {
@@ -136,13 +126,13 @@ var work = {
         "employer": "Republic of Korea Army",
         "title": "Enlisted Man, Arcraft Assitant Instructor",
         "location": "Army Aviation School, Nonsan, South Korea",
-        "period": "Feb 2015 - Nov 2016 (1 year and 9 months)",
+        "dates": "Feb 2015 - Nov 2016 (1 year and 9 months)",
         "description": "Employed Helicopters such as 500MD, UH-1H, AH-1S, UH-60, BO-105, CH-47 to rear warrant officers and military officers"
     }, {
         "employer": "Tutoring Center @ Highline College",
         "title": "Math Tutor",
         "location": "Des Moines, WA, USA",
-        "period": "Jan 2013 - June 2013 (6 months)",
+        "dates": "Jan 2013 - June 2013 (6 months)",
         "description": "taught Multicalculus level Mathematics"
     }],
     "display": function() {
@@ -154,7 +144,7 @@ var work = {
             var formattedTitle = HTMLworkTitle.replace("%data%", job.title);
             $(".work-entry:last").append(formattedEmployer + formattedTitle);
 
-            var formattedDates = HTMLworkDates.replace("%data%", job.period);
+            var formattedDates = HTMLworkDates.replace("%data%", job.dates);
             $(".work-entry:last").append(formattedDates);
 
             /*always add location after date*/
@@ -166,7 +156,6 @@ var work = {
         });
     }
 };
-work.display();
 
 //my project
 var projects = {
@@ -206,18 +195,12 @@ var projects = {
         });
     }
 };
-projects.display();
 
-/*internationalizeButton*/
-function inName(name) {
-    name = name.trim().split(" ");
-    console.log(name);
-    name[1] = name[1].toUpperCase();
-    name[0] = name[0].slice(0, 1).toUpperCase() + name[0].slice(1).toLowerCase();
-    return name[0] + " " + name[1];
-}
-$("#main").append(internationalizeButton);
+//function calls
+bio.display();
+education.display();
+work.display();
+projects.display();
 
 /*Google Map doesn't work... :(*/
 $("#mapDiv").append(googleMap);
-$("#map").initializeMap();
