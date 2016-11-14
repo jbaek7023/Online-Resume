@@ -1,3 +1,4 @@
-# Project Details
+# Online Resume
 
-This project is for my online resume.
+1. download entire file
+2. open 'index.html'
