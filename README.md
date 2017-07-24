@@ -1,4 +1,4 @@
 # Online Resume
 
-1. download entire file
-2. open 'index.html'
+[DEMO](https://jbaek7023.github.io/Online-Resume/)
+
